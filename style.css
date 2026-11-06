@@ -1,11 +1,14 @@
+/* Memuat Google Font 'Poppins' */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
 body {
     background-color: #f4f7fc;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins', sans-serif; /* Mengubah font utama web */
     margin: 0;
     padding: 0;
 }
 
-/* Styling Navbar Manual dengan ul li */
+/* Styling Navbar Manual */
 .haeder {
     background: linear-gradient(135deg, #1e3c72, #2a5298);
     color: white;
@@ -18,43 +21,108 @@ body {
 
 .haeder .logo {
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 700;
     color: white;
     text-decoration: none;
+    font-family: 'Poppins', sans-serif;
 }
 
 .custom-nav ul {
-    list-style-type: none; /* Menghilangkan titik hitam bawaan li */
+    list-style-type: none;
     margin: 0;
     padding: 0;
-    display: flex; /* Membuat list berderet ke samping */
-    gap: 20px;     /* Jarak antar menu */
+    display: flex;
+    gap: 25px;
     align-items: center;
 }
 
 .custom-nav ul li a {
-    color: white;
+    color: #e2e8f0;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 500; /* Ketebalan font pas untuk navbar */
+    font-size: 15px;
     transition: 0.2s;
+    font-family: 'Poppins', sans-serif;
 }
 
 .custom-nav ul li a:hover {
-    color: #a0c4ff;
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
 }
 
-/* Komponen lainnya */
+/* Header Welcome yang Rapi */
+.welcome-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #ffffff;
+    padding: 20px 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    margin-bottom: 24px;
+}
+
+/* Komponen Kartu & Tombol Custom */
 .card {
     border: none;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
+
 .btn-primary-custom {
     background-color: #2a5298;
     border: none;
     color: white;
 }
+
 .btn-primary-custom:hover {
     background-color: #1e3c72;
     color: white;
+}
+
+/* Styling Tabel & Modal */
+.table th {
+    font-weight: 600;
+    color: #495057;
+    background-color: #f8f9fa !important;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.table td {
+    vertical-align: middle;
+    color: #333;
+}
+
+.badge-id {
+    background-color: #e9ecef;
+    color: #495057;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+
+.btn-action {
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.btn-action:hover {
+    transform: scale(1.05);
+}
+
+.modal-content {
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+}
+
+.card-stat {
+    border: none;
+    border-radius: 12px;
+    transition: transform 0.2s;
+}
+
+.card-stat:hover {
+    transform: translateY(-3px);
 }

@@ -1,53 +1,66 @@
 <?php
+session_start();
+
 $nama_kelas   = "XI IPA 1";
 $tingkat      = "XI";
 $tahun_ajaran = "2026/2027";
 
-// Array berisi daftar nama, jenis kelamin, dan alamat yang berbeda-beda
-$daftar_siswa = [
-    ["nama" => "Andi Pratama", "jk" => "Laki-laki", "alamat" => "Jl. HR. Soebrantas"],
-    ["nama" => "Budi Santoso", "jk" => "Laki-laki", "alamat" => "Jl. Garuda Sakti"],
-    ["nama" => "Citra Lestari", "jk" => "Perempuan", "alamat" => "Jl. Arifin Achmad"],
-    ["nama" => "Dedi Kurniawan", "jk" => "Laki-laki", "alamat" => "Jl. Soekarno-Hatta"],
-    ["nama" => "Eka Putri", "jk" => "Perempuan", "alamat" => "Jl. Sudirman"],
-    ["nama" => "Fajar Ramadhan", "jk" => "Laki-laki", "alamat" => "Jl. Riau"],
-    ["nama" => "Gita Gutawa", "jk" => "Perempuan", "alamat" => "Jl. Patimura"],
-    ["nama" => "Hadi Wijaya", "jk" => "Laki-laki", "alamat" => "Jl. Paus"],
-    ["nama" => "Indah Permata", "jk" => "Perempuan", "alamat" => "Jl. Tuanku Tambusai"],
-    ["nama" => "Joko Susilo", "jk" => "Laki-laki", "alamat" => "Jl. Nangka"],
-    ["nama" => "Kartika Sari", "jk" => "Perempuan", "alamat" => "Jl. Subrantas"],
-    ["nama" => "Lestari", "jk" => "Perempuan", "alamat" => "Jl. Lily"],
-    ["nama" => "Maya Anggraini", "jk" => "Perempuan", "alamat" => "Jl. Delima"],
-    ["nama" => "Nanda Pratama", "jk" => "Laki-laki", "alamat" => "Jl. Cipta Karya"],
-    ["nama" => "Putri Utami", "jk" => "Perempuan", "alamat" => "Jl. Kamboja"],
-    ["nama" => "Qori Sandioriva", "jk" => "Perempuan", "alamat" => "Jl. Melati"],
-    ["nama" => "Rian Mahendra", "jk" => "Laki-laki", "alamat" => "Jl. Mawar"],
-    ["nama" => "Siti Nurhaliza", "jk" => "Perempuan", "alamat" => "Jl. Kenanga"],
-    ["nama" => "Tono Sudiono", "jk" => "Laki-laki", "alamat" => "Jl. Lobak"],
-    ["nama" => "Utami Dewi", "jk" => "Perempuan", "alamat" => "Jl. Rajawali"],
-    ["nama" => "Vira Amelia", "jk" => "Perempuan", "alamat" => "Jl. Garuda"],
-    ["nama" => "Wahyu Hidayat", "jk" => "Laki-laki", "alamat" => "Jl. Durian"],
-    ["nama" => "Xaverius", "jk" => "Laki-laki", "alamat" => "Jl. Mangga"],
-    ["nama" => "Yanti Susanti", "jk" => "Perempuan", "alamat" => "Jl. Rambutan"],
-    ["nama" => "Zainal Abidin", "jk" => "Laki-laki", "alamat" => "Jl. Jati"],
-    ["nama" => "Ahmad Fauzi", "jk" => "Laki-laki", "alamat" => "Jl. Cendana"],
-    ["nama" => "Bella Safitri", "jk" => "Perempuan", "alamat" => "Jl. Dahlia"],
-    ["nama" => "Candra Kirana", "jk" => "Perempuan", "alamat" => "Jl. Anggrek"],
-    ["nama" => "Dewi Lestari", "jk" => "Perempuan", "alamat" => "Jl. Srikandi"],
-    ["nama" => "Eko Prasetyo", "jk" => "Laki-laki", "alamat" => "Jl. Bangka"],
-    ["nama" => "Fitri Handayani", "jk" => "Perempuan", "alamat" => "Jl. Sumatera"],
-    ["nama" => "Gilang Dirga", "jk" => "Laki-laki", "alamat" => "Jl. Kalimantan"],
-    ["nama" => "Hesti Purwadinata", "jk" => "Perempuan", "alamat" => "Jl. Jawa"],
-    ["nama" => "Irfan Hakim", "jk" => "Laki-laki", "alamat" => "Jl. Sulawesi"]
-];
+// Jika session daftar_siswa belum ada, buat data awalnya beserta status default
+if (!isset($_SESSION['daftar_siswa'])) {
+    $_SESSION['daftar_siswa'] = [
+        ["nama" => "Andi Pratama", "jk" => "Laki-laki", "alamat" => "Jl. HR. Soebrantas", "status" => "Hadir"],
+        ["nama" => "Budi Santoso", "jk" => "Laki-laki", "alamat" => "Jl. Garuda Sakti", "status" => "Hadir"],
+        ["nama" => "Citra Lestari", "jk" => "Perempuan", "alamat" => "Jl. Arifin Achmad", "status" => "Hadir"],
+        ["nama" => "Dedi Kurniawan", "jk" => "Laki-laki", "alamat" => "Jl. Soekarno-Hatta", "status" => "Hadir"],
+        ["nama" => "Eka Putri", "jk" => "Perempuan", "alamat" => "Jl. Sudirman", "status" => "Izin"],
+        ["nama" => "Fajar Ramadhan", "jk" => "Laki-laki", "alamat" => "Jl. Riau", "status" => "Hadir"],
+        ["nama" => "Gita Gutawa", "jk" => "Perempuan", "alamat" => "Jl. Patimura", "status" => "Hadir"],
+        ["nama" => "Hadi Wijaya", "jk" => "Laki-laki", "alamat" => "Jl. Paus", "status" => "Hadir"],
+        ["nama" => "Indah Permata", "jk" => "Perempuan", "alamat" => "Jl. Tuanku Tambusai", "status" => "Hadir"],
+        ["nama" => "Joko Susilo", "jk" => "Laki-laki", "alamat" => "Jl. Nangka", "status" => "Hadir"],
+        ["nama" => "Kartika Sari", "jk" => "Perempuan", "alamat" => "Jl. Subrantas", "status" => "Hadir"],
+        ["nama" => "Lestari", "jk" => "Perempuan", "alamat" => "Jl. Lily", "status" => "Izin"],
+        ["nama" => "Maya Anggraini", "jk" => "Perempuan", "alamat" => "Jl. Delima", "status" => "Hadir"],
+        ["nama" => "Nanda Pratama", "jk" => "Laki-laki", "alamat" => "Jl. Cipta Karya", "status" => "Hadir"],
+        ["nama" => "Putri Utami", "jk" => "Perempuan", "alamat" => "Jl. Kamboja", "status" => "Hadir"],
+        ["nama" => "Qori Sandioriva", "jk" => "Perempuan", "alamat" => "Jl. Melati", "status" => "Hadir"],
+        ["nama" => "Rian Mahendra", "jk" => "Laki-laki", "alamat" => "Jl. Mawar", "status" => "Hadir"],
+        ["nama" => "Siti Nurhaliza", "jk" => "Perempuan", "alamat" => "Jl. Kenanga", "status" => "Sakit"],
+        ["nama" => "Tono Sudiono", "jk" => "Laki-laki", "alamat" => "Jl. Lobak", "status" => "Hadir"],
+        ["nama" => "Utami Dewi", "jk" => "Perempuan", "alamat" => "Jl. Rajawali", "status" => "Hadir"],
+        ["nama" => "Vira Amelia", "jk" => "Perempuan", "alamat" => "Jl. Garuda", "status" => "Hadir"],
+        ["nama" => "Wahyu Hidayat", "jk" => "Laki-laki", "alamat" => "Jl. Durian", "status" => "Hadir"],
+        ["nama" => "Xaverius", "jk" => "Laki-laki", "alamat" => "Jl. Mangga", "status" => "Hadir"],
+        ["nama" => "Yanti Susanti", "jk" => "Perempuan", "alamat" => "Jl. Rambutan", "status" => "Hadir"],
+        ["nama" => "Zainal Abidin", "jk" => "Laki-laki", "alamat" => "Jl. Jati", "status" => "Hadir"],
+        ["nama" => "Ahmad Fauzi", "jk" => "Laki-laki", "alamat" => "Jl. Cendana", "status" => "Hadir"],
+        ["nama" => "Bella Safitri", "jk" => "Perempuan", "alamat" => "Jl. Dahlia", "status" => "Hadir"],
+        ["nama" => "Candra Kirana", "jk" => "Perempuan", "alamat" => "Jl. Anggrek", "status" => "Hadir"],
+        ["nama" => "Dewi Lestari", "jk" => "Perempuan", "alamat" => "Jl. Srikandi", "status" => "Hadir"],
+        ["nama" => "Eko Prasetyo", "jk" => "Laki-laki", "alamat" => "Jl. Bangka", "status" => "Hadir"],
+        ["nama" => "Fitri Handayani", "jk" => "Perempuan", "alamat" => "Jl. Sumatera", "status" => "Hadir"],
+        ["nama" => "Gilang Dirga", "jk" => "Laki-laki", "alamat" => "Jl. Kalimantan", "status" => "Hadir"],
+        ["nama" => "Hesti Purwadinata", "jk" => "Perempuan", "alamat" => "Jl. Jawa", "status" => "Hadir"],
+        ["nama" => "Irfan Hakim", "jk" => "Laki-laki", "alamat" => "Jl. Sulawesi", "status" => "Hadir"]
+    ];
+}
 
+$daftar_siswa = $_SESSION['daftar_siswa'];
 $total_siswa = count($daftar_siswa);
 
-// Ringkasan Kehadiran Hari Ini
-$hadir = 31;
-$izin  = 2;
-$sakit = 1;
-$alfa  = 0;
+// Hitung ringkasan status kehadiran secara dinamis
+$hadir = 0;
+$izin = 0;
+$sakit = 0;
+$alfa = 0;
+
+foreach ($daftar_siswa as $s) {
+    $st = isset($s['status']) ? $s['status'] : 'Hadir';
+    if ($st == 'Hadir') $hadir++;
+    elseif ($st == 'Izin') $izin++;
+    elseif ($st == 'Sakit') $sakit++;
+    elseif ($st == 'Alpa') $alfa++;
+}
 ?>
 
 <!DOCTYPE html>
@@ -60,57 +73,36 @@ $alfa  = 0;
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome Icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    body { background-color: #f8f9fa; }
-    .card-stat { border: none; border-radius: 12px; transition: transform 0.2s; }
-    .card-stat:hover { transform: translateY(-3px); }
-    /* Styling tambahan agar sudut modal semakin tumpul dan estetik */
-    .modal-content {
-      border-radius: 20px;
-      border: none;
-      box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
-    }
-  </style>
+  <!-- Hubungkan ke file style.css -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- NAVBAR UTAMA -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="dashboard.php">
-        <i class="fa-solid fa-graduation-cap me-2"></i>Monitoring Siswa
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto fw-semibold">
-          <li class="nav-item">
-            <a class="nav-link active" href="dashboard.php"><i class="fa-solid fa-chart-line me-1"></i> Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="data_sekolah.php"><i class="fa-solid fa-school me-1"></i> Data Sekolah</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="monitoring_akademik.php"><i class="fa-solid fa-clipboard-user me-1"></i> Monitoring & Akademik</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <!-- NAVBAR CUSTOM -->
+  <header class="haeder">
+    <a href="dashboard.php" class="logo">
+      <i class="fa-solid fa-graduation-cap me-2"></i>Monitoring Siswa
+    </a>
+    <nav class="custom-nav">
+      <ul>
+        <li><a href="dashboard.php">Dashboard</a></li>
+        <li><a href="data_sekolah.php">Data Sekolah</a></li>
+        <li><a href="monitoring_akademik.php">Monitoring & Akademik</a></li>
+      </ul>
+    </nav>
+  </header>
 
   <!-- KONTEN DASHBOARD -->
   <div class="container my-4">
     
     <!-- HEADER WELCOME -->
-    <div class="d-flex justify-content-between align-items-center mb-4 p-3 bg-white rounded-3 shadow-sm">
+    <div class="welcome-header">
       <div>
         <h4 class="fw-bold mb-1">Dashboard Monitoring Kelas</h4>
         <p class="text-muted mb-0">Kelas: <span class="badge bg-primary fs-6"><?= $nama_kelas; ?></span> | Tahun Ajaran: <?= $tahun_ajaran; ?></p>
       </div>
-      <div>
-        <button class="btn btn-outline-primary btn-sm" onclick="window.print()"><i class="fa-solid fa-print me-1"></i> Cetak Ringkasan</button>
+      <div class="mt-2 mt-md-0">
+        <button class="btn btn-outline-primary btn-sm shadow-sm" onclick="window.print()"><i class="fa-solid fa-print me-1"></i> Cetak Ringkasan</button>
       </div>
     </div>
 
@@ -138,7 +130,7 @@ $alfa  = 0;
               <div>
                 <small class="text-white-50 fw-semibold">HADIR HARI INI</small>
                 <h2 class="fw-bold mb-0"><?= $hadir; ?></h2>
-                <small><?= round(($hadir/$total_siswa)*100, 1); ?>% Kehadiran</small>
+                <small><?= ($total_siswa > 0) ? round(($hadir/$total_siswa)*100, 1) : 0; ?>% Kehadiran</small>
               </div>
               <i class="fa-solid fa-user-check fa-3x text-white-50"></i>
             </div>
@@ -178,26 +170,26 @@ $alfa  = 0;
     </div>
 
     <!-- TABEL DAFTAR SISWA KELAS -->
-    <div class="card border-0 shadow-sm rounded-3">
-      <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
-        <h5 class="fw-bold mb-0 text-dark">Daftar Siswa Kelas <?= $nama_kelas; ?> (<?= $total_siswa; ?> Siswa)</h5>
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+      <div class="card-header bg-white py-3 px-4 d-flex justify-content-between align-items-center border-bottom">
+        <h5 class="fw-bold mb-0 text-dark"><i class="fa-solid fa-table-list me-2 text-primary"></i>Daftar Siswa Kelas <?= $nama_kelas; ?> <span class="text-muted fs-6 fw-normal">(<?= $total_siswa; ?> Siswa)</span></h5>
         
-        <!-- Tombol pemicu Modal Popup di Tengah -->
-        <button class="btn btn-sm btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalTambahSiswa">
-          <i class="fa-solid fa-user-plus me-1"></i> Tambah Mahasiswa
+        <!-- Tombol Tambah Data -->
+        <button class="btn btn-sm btn-primary-custom px-3 py-2 shadow-sm rounded-pill fw-semibold" type="button" data-bs-toggle="modal" data-bs-target="#modalTambahSiswa">
+          <i class="fa-solid fa-user-plus me-1"></i> Tambah Data
         </button>
       </div>
       <div class="card-body p-0">
         <div class="table-responsive">
           <table class="table table-hover align-middle mb-0">
-            <thead class="table-light">
+            <thead class="table-light text-uppercase fs-7">
               <tr>
-                <th class="text-center px-3" style="width: 70px;">No</th>
-                <th class="text-center">ID Siswa</th>
-                <th class="text-start">Nama Siswa</th>
-                <th class="text-start">Jenis Kelamin</th>
-                <th class="text-start">Alamat</th>
-                <th class="text-center">Status Kehadiran Hari Ini</th>
+                <th class="text-center py-3 px-3" style="width: 70px;">No</th>
+                <th class="text-center py-3">ID Siswa</th>
+                <th class="text-start py-3">Nama Siswa</th>
+                <th class="text-start py-3">Jenis Kelamin</th>
+                <th class="text-start py-3">Alamat</th>
+                <th class="text-center py-3">Status Kehadiran Hari Ini</th>
               </tr>
             </thead>
             <tbody>
@@ -212,16 +204,16 @@ $alfa  = 0;
                   $nama_siswa = $siswa['nama'];
                   $jk = $siswa['jk'];
                   $alamat = $siswa['alamat'];
+                  $status_teks = isset($siswa['status']) ? $siswa['status'] : 'Hadir';
                   
-                  if ($original_no == 5 || $original_no == 12) {
-                      $status_teks = 'Izin';
-                      $status_badge = '<span class="badge bg-warning text-dark"><i class="fa-solid fa-clock"></i> Izin</span>';
-                  } elseif ($original_no == 18) {
-                      $status_teks = 'Sakit';
-                      $status_badge = '<span class="badge bg-info text-dark"><i class="fa-solid fa-notes-medical"></i> Sakit</span>';
+                  if ($status_teks == 'Izin') {
+                      $status_badge = '<span class="badge bg-warning text-dark px-3 py-2 rounded-pill shadow-sm"><i class="fa-solid fa-clock me-1"></i> Izin</span>';
+                  } elseif ($status_teks == 'Sakit') {
+                      $status_badge = '<span class="badge bg-info text-dark px-3 py-2 rounded-pill shadow-sm"><i class="fa-solid fa-notes-medical me-1"></i> Sakit</span>';
+                  } elseif ($status_teks == 'Alpa') {
+                      $status_badge = '<span class="badge bg-danger px-3 py-2 rounded-pill shadow-sm"><i class="fa-solid fa-xmark me-1"></i> Alpa</span>';
                   } else {
-                      $status_teks = 'Hadir';
-                      $status_badge = '<span class="badge bg-success"><i class="fa-solid fa-check"></i> Hadir</span>';
+                      $status_badge = '<span class="badge bg-success px-3 py-2 rounded-pill shadow-sm"><i class="fa-solid fa-check me-1"></i> Hadir</span>';
                   }
 
                   if ($filter == 'Hadir' && $status_teks != 'Hadir') continue;
@@ -229,13 +221,85 @@ $alfa  = 0;
                   if ($filter == 'Alpa' && $status_teks != 'Alpa') continue;
               ?>
               <tr>
-                <td class="text-center px-3 fw-bold"><?= $no_urut++; ?></td>
-                <td class="text-center"><code><?= $id_siswa; ?></code></td>
-                <td class="text-start fw-semibold"><?= $nama_siswa; ?></td>
-                <td class="text-start"><?= $jk; ?></td>
-                <td class="text-start"><?= $alamat; ?></td>
-                <td class="text-center"><?= $status_badge; ?></td>
+                <td class="text-center px-3 fw-bold text-secondary"><?= $no_urut++; ?></td>
+                <td class="text-center"><span class="badge-id font-monospace"><?= $id_siswa; ?></span></td>
+                <td class="text-start fw-semibold text-dark"><?= $nama_siswa; ?></td>
+                <td class="text-start text-muted"><?= $jk; ?></td>
+                <td class="text-start text-muted"><?= $alamat; ?></td>
+                <td class="text-center py-3">
+                  <div class="d-flex align-items-center justify-content-center gap-2">
+                    <!-- Tombol Edit -->
+                    <button class="btn btn-sm btn-warning text-dark px-2.5 py-1.5 btn-action shadow-sm" title="Edit Data" data-bs-toggle="modal" data-bs-target="#modalEdit<?= $id_siswa; ?>">
+                      <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                    
+                    <!-- Badge Status Kehadiran -->
+                    <div><?= $status_badge; ?></div>
+                    
+                    <!-- Tombol Hapus -->
+                    <a href="hapus.php?id=<?= $id_siswa; ?>" class="btn btn-sm btn-danger px-2.5 py-1.5 btn-action shadow-sm" title="Hapus Data" onclick="return confirm('Yakin ingin menghapus data <?= $nama_siswa; ?>?')">
+                      <i class="fa-solid fa-trash"></i>
+                    </a>
+                  </div>
+                </td>
               </tr>
+
+              <!-- MODAL EDIT DATA PER SISWA -->
+              <div class="modal fade" id="modalEdit<?= $id_siswa; ?>" tabindex="-1" aria-labelledby="modalEditLabel<?= $id_siswa; ?>" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content p-3">
+                    <div class="modal-header border-0 pb-0">
+                      <h5 class="modal-title fw-bold text-primary" id="modalEditLabel<?= $id_siswa; ?>">
+                        <i class="fa-solid fa-user-pen me-2"></i> Edit Data Siswa
+                      </h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body pt-2">
+                      <form action="edit.php" method="POST">
+                        <div class="mb-3">
+                          <label class="form-label fw-semibold text-secondary small">ID Siswa</label>
+                          <input type="text" class="form-control rounded-3 py-2 bg-light" name="id_siswa" value="<?= $id_siswa; ?>" readonly>
+                        </div>
+
+                        <div class="mb-3">
+                          <label class="form-label fw-semibold text-secondary small">Nama Lengkap</label>
+                          <input type="text" class="form-control rounded-3 py-2" name="nama_lengkap" value="<?= $nama_siswa; ?>" required>
+                        </div>
+
+                        <div class="mb-3">
+                          <label class="form-label fw-semibold text-secondary small">Jenis Kelamin</label>
+                          <select class="form-select rounded-3 py-2" name="jk" required>
+                            <option value="Laki-laki" <?= ($jk == 'Laki-laki') ? 'selected' : ''; ?>>Laki-laki</option>
+                            <option value="Perempuan" <?= ($jk == 'Perempuan') ? 'selected' : ''; ?>>Perempuan</option>
+                          </select>
+                        </div>
+
+                        <div class="mb-3">
+                          <label class="form-label fw-semibold text-secondary small">Alamat</label>
+                          <input type="text" class="form-control rounded-3 py-2" name="alamat" value="<?= $alamat; ?>" required>
+                        </div>
+
+                        <div class="mb-3">
+                          <label class="form-label fw-semibold text-secondary small">Status Kehadiran</label>
+                          <select class="form-select rounded-3 py-2" name="status_kehadiran" required>
+                            <option value="Hadir" <?= ($status_teks == 'Hadir') ? 'selected' : ''; ?>>Hadir</option>
+                            <option value="Izin" <?= ($status_teks == 'Izin') ? 'selected' : ''; ?>>Izin</option>
+                            <option value="Sakit" <?= ($status_teks == 'Sakit') ? 'selected' : ''; ?>>Sakit</option>
+                            <option value="Alpa" <?= ($status_teks == 'Alpa') ? 'selected' : ''; ?>>Alpa</option>
+                          </select>
+                        </div>
+
+                        <div class="d-grid mt-4">
+                          <button type="submit" name="update" class="btn btn-primary-custom py-2 rounded-3 fw-semibold shadow-sm">
+                            <i class="fa-solid fa-floppy-disk me-1"></i> Simpan Perubahan
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <?php } ?>
             </tbody>
           </table>
@@ -245,50 +309,44 @@ $alfa  = 0;
 
   </div> <!-- Penutup container -->
 
-  <!-- MODAL POPUP TAMBAH MAHASISWA (DI TENGAH & SUDUT TUMPUL) -->
+  <!-- MODAL POPUP TAMBAH DATA -->
   <div class="modal fade" id="modalTambahSiswa" tabindex="-1" aria-labelledby="modalTambahSiswaLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content p-3">
         <div class="modal-header border-0 pb-0">
           <h5 class="modal-title fw-bold text-primary" id="modalTambahSiswaLabel">
-            <i class="fa-solid fa-user-plus me-2"></i> Tambah Mahasiswa
+            <i class="fa-solid fa-user-plus me-2"></i> Tambah Data
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body pt-2">
-          <!-- Form Input Data -->
-          <form action="" method="POST">
+          <form action="tambah.php" method="POST">
             <div class="mb-3">
-              <label for="id_mahasiswa" class="form-label fw-semibold text-secondary small">ID Mahasiswa</label>
-              <input type="text" class="form-control rounded-3 py-2" id="id_mahasiswa" name="id_mahasiswa" placeholder="Contoh: M001" required>
+              <label class="form-label fw-semibold text-secondary small">ID Siswa</label>
+              <input type="text" class="form-control rounded-3 py-2" name="id_mahasiswa" placeholder="Contoh: S035" required>
             </div>
 
             <div class="mb-3">
-              <label for="nama_lengkap" class="form-label fw-semibold text-secondary small">Nama Lengkap</label>
-              <input type="text" class="form-control rounded-3 py-2" id="nama_lengkap" name="nama_lengkap" placeholder="Masukkan nama" required>
+              <label class="form-label fw-semibold text-secondary small">Nama Lengkap</label>
+              <input type="text" class="form-control rounded-3 py-2" name="nama_lengkap" placeholder="Masukkan nama" required>
             </div>
 
             <div class="mb-3">
-              <label for="id_jurusan" class="form-label fw-semibold text-secondary small">ID Jurusan (id_j)</label>
-              <input type="text" class="form-control rounded-3 py-2" id="id_jurusan" name="id_jurusan" placeholder="Contoh: J01" required>
-            </div>
-
-            <div class="mb-3">
-              <label for="alamat" class="form-label fw-semibold text-secondary small">Alamat</label>
-              <input type="text" class="form-control rounded-3 py-2" id="alamat" name="alamat" placeholder="Masukkan alamat" required>
-            </div>
-
-            <div class="mb-3">
-              <label for="jk" class="form-label fw-semibold text-secondary small">Jenis Kelamin</label>
-              <select class="form-select rounded-3 py-2" id="jk" name="jk" required>
+              <label class="form-label fw-semibold text-secondary small">Jenis Kelamin</label>
+              <select class="form-select rounded-3 py-2" name="jk" required>
                 <option value="" selected disabled>Pilih Jenis Kelamin</option>
                 <option value="Laki-laki">Laki-laki</option>
                 <option value="Perempuan">Perempuan</option>
               </select>
             </div>
 
+            <div class="mb-3">
+              <label class="form-label fw-semibold text-secondary small">Alamat</label>
+              <input type="text" class="form-control rounded-3 py-2" name="alamat" placeholder="Masukkan alamat" required>
+            </div>
+
             <div class="d-grid mt-4">
-              <button type="submit" name="simpan" class="btn btn-primary py-2 rounded-3 fw-semibold">
+              <button type="submit" name="simpan" class="btn btn-primary-custom py-2 rounded-3 fw-semibold shadow-sm">
                 <i class="fa-solid fa-floppy-disk me-1"></i> Simpan Data
               </button>
             </div>

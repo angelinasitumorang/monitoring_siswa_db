@@ -1,21 +1,25 @@
 <?php
-include 'connect.php';
+session_start();
 
 if (isset($_POST['simpan'])) {
-    $id_siswa = $_POST['id_siswa'];
-    $nama_siswa = $_POST['nama_siswa'];
-    $jenis_kelamin = $_POST['jenis_kelamin'];
-    $alamat = $_POST['alamat'];
-    $id_kelas = $_POST['id_kelas'];
+    $id_siswa     = $_POST['id_mahasiswa'];
+    $nama_lengkap = $_POST['nama_lengkap'];
+    $jk           = $_POST['jk'];
+    $alamat       = $_POST['alamat'];
 
-    $query = "INSERT INTO siswa (id_siswa, nama_siswa, jenis_kelamin, alamat, id_kelas VALUES ('$id_siswa, $nama_siswa, $jenis_kelamin, $alamat, $id_kelas')";
+    // Buat array data baru untuk siswa yang ditambahkan
+    $data_baru = [
+        "nama"   => $nama_lengkap,
+        "jk"     => $jk,
+        "alamat" => $alamat,
+        "status" => "Hadir" // Default status kehadiran saat pertama kali ditambah adalah Hadir
+    ];
 
-    if (mysqli_query($koneksi, $query)) {
-        echo "<script>alert('Data siswa berhasil ditambahkan!'); window.location='index.php';</script>";
-    } else {
-        echo "<script>alert('Gagal menyimpan data: " . mysqli_error($konkesi) . "'); window.location='index.php';</script>";
-    }
-} else {
-        header("Location: index.php");
+    // Masukkan data baru ke dalam session daftar_siswa
+    $_SESSION['daftar_siswa'][] = $data_baru;
+
+    // Alihkan kembali ke halaman dashboard
+    header("Location: dashboard.php");
+    exit();
 }
 ?>

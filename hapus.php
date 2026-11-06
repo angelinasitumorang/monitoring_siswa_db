@@ -1,17 +1,22 @@
 <?php
-include 'connect.php';
+session_start();
 
 if (isset($_GET['id'])) {
-    $id_siswa = $_GET['id'];
+    $id_siswa = $_GET['id']; // Contoh: "S001"
 
-    $query = "DELETE FROM siswa WHERE id_siswa = '$id_siswa";
+    // Mengonversi ID Siswa "S001" menjadi angka indeks array (S001 -> index 0)
+    $index = intval(substr($id_siswa, 1)) - 1;
 
-    if (mysqli_query($koneksi, $query)) {
-        echo "<script>alert('Data siswa berhasil dihapus!'); window.location='index.php';</script>";
-    } else {
-        echo "<script>alert('Gagal menghapus data: " . mysqli_eror($koneksi) . "'); window.location='index.php';</script>";
+    // Jika data pada indeks tersebut ada di session, hapus dari array
+    if (isset($_SESSION['daftar_siswa'][$index])) {
+        unset($_SESSION['daftar_siswa'][$index]);
+        
+        // Merapikan ulang index array agar urutannya tidak loncat
+        $_SESSION['daftar_siswa'] = array_values($_SESSION['daftar_siswa']);
     }
-} else {
-    header("Location: index.php");
 }
+
+// Alihkan kembali ke halaman dashboard setelah data dihapus
+header("Location: dashboard.php");
+exit();
 ?>

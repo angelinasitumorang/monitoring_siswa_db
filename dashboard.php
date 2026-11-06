@@ -5,43 +5,43 @@ $nama_kelas   = "XI IPA 1";
 $tingkat      = "XI";
 $tahun_ajaran = "2026/2027";
 
-// Jika session daftar_siswa belum ada, buat data awalnya beserta status default
+// Jika session daftar_siswa belum ada, buat data awalnya beserta status kehadiran & perkembangan
 if (!isset($_SESSION['daftar_siswa'])) {
     $_SESSION['daftar_siswa'] = [
-        ["nama" => "Andi Pratama", "jk" => "Laki-laki", "alamat" => "Jl. HR. Soebrantas", "status" => "Hadir"],
-        ["nama" => "Budi Santoso", "jk" => "Laki-laki", "alamat" => "Jl. Garuda Sakti", "status" => "Hadir"],
-        ["nama" => "Citra Lestari", "jk" => "Perempuan", "alamat" => "Jl. Arifin Achmad", "status" => "Hadir"],
-        ["nama" => "Dedi Kurniawan", "jk" => "Laki-laki", "alamat" => "Jl. Soekarno-Hatta", "status" => "Hadir"],
-        ["nama" => "Eka Putri", "jk" => "Perempuan", "alamat" => "Jl. Sudirman", "status" => "Izin"],
-        ["nama" => "Fajar Ramadhan", "jk" => "Laki-laki", "alamat" => "Jl. Riau", "status" => "Hadir"],
-        ["nama" => "Gita Gutawa", "jk" => "Perempuan", "alamat" => "Jl. Patimura", "status" => "Hadir"],
-        ["nama" => "Hadi Wijaya", "jk" => "Laki-laki", "alamat" => "Jl. Paus", "status" => "Hadir"],
-        ["nama" => "Indah Permata", "jk" => "Perempuan", "alamat" => "Jl. Tuanku Tambusai", "status" => "Hadir"],
-        ["nama" => "Joko Susilo", "jk" => "Laki-laki", "alamat" => "Jl. Nangka", "status" => "Hadir"],
-        ["nama" => "Kartika Sari", "jk" => "Perempuan", "alamat" => "Jl. Subrantas", "status" => "Hadir"],
-        ["nama" => "Lestari", "jk" => "Perempuan", "alamat" => "Jl. Lily", "status" => "Izin"],
-        ["nama" => "Maya Anggraini", "jk" => "Perempuan", "alamat" => "Jl. Delima", "status" => "Hadir"],
-        ["nama" => "Nanda Pratama", "jk" => "Laki-laki", "alamat" => "Jl. Cipta Karya", "status" => "Hadir"],
-        ["nama" => "Putri Utami", "jk" => "Perempuan", "alamat" => "Jl. Kamboja", "status" => "Hadir"],
-        ["nama" => "Qori Sandioriva", "jk" => "Perempuan", "alamat" => "Jl. Melati", "status" => "Hadir"],
-        ["nama" => "Rian Mahendra", "jk" => "Laki-laki", "alamat" => "Jl. Mawar", "status" => "Hadir"],
-        ["nama" => "Siti Nurhaliza", "jk" => "Perempuan", "alamat" => "Jl. Kenanga", "status" => "Sakit"],
-        ["nama" => "Tono Sudiono", "jk" => "Laki-laki", "alamat" => "Jl. Lobak", "status" => "Hadir"],
-        ["nama" => "Utami Dewi", "jk" => "Perempuan", "alamat" => "Jl. Rajawali", "status" => "Hadir"],
-        ["nama" => "Vira Amelia", "jk" => "Perempuan", "alamat" => "Jl. Garuda", "status" => "Hadir"],
-        ["nama" => "Wahyu Hidayat", "jk" => "Laki-laki", "alamat" => "Jl. Durian", "status" => "Hadir"],
-        ["nama" => "Xaverius", "jk" => "Laki-laki", "alamat" => "Jl. Mangga", "status" => "Hadir"],
-        ["nama" => "Yanti Susanti", "jk" => "Perempuan", "alamat" => "Jl. Rambutan", "status" => "Hadir"],
-        ["nama" => "Zainal Abidin", "jk" => "Laki-laki", "alamat" => "Jl. Jati", "status" => "Hadir"],
-        ["nama" => "Ahmad Fauzi", "jk" => "Laki-laki", "alamat" => "Jl. Cendana", "status" => "Hadir"],
-        ["nama" => "Bella Safitri", "jk" => "Perempuan", "alamat" => "Jl. Dahlia", "status" => "Hadir"],
-        ["nama" => "Candra Kirana", "jk" => "Perempuan", "alamat" => "Jl. Anggrek", "status" => "Hadir"],
-        ["nama" => "Dewi Lestari", "jk" => "Perempuan", "alamat" => "Jl. Srikandi", "status" => "Hadir"],
-        ["nama" => "Eko Prasetyo", "jk" => "Laki-laki", "alamat" => "Jl. Bangka", "status" => "Hadir"],
-        ["nama" => "Fitri Handayani", "jk" => "Perempuan", "alamat" => "Jl. Sumatera", "status" => "Hadir"],
-        ["nama" => "Gilang Dirga", "jk" => "Laki-laki", "alamat" => "Jl. Kalimantan", "status" => "Hadir"],
-        ["nama" => "Hesti Purwadinata", "jk" => "Perempuan", "alamat" => "Jl. Jawa", "status" => "Hadir"],
-        ["nama" => "Irfan Hakim", "jk" => "Laki-laki", "alamat" => "Jl. Sulawesi", "status" => "Hadir"]
+        ["nama" => "Andi Pratama", "jk" => "Laki-laki", "alamat" => "Jl. HR. Soebrantas", "status" => "Hadir", "perkembangan" => "Baik"],
+        ["nama" => "Budi Santoso", "jk" => "Laki-laki", "alamat" => "Jl. Garuda Sakti", "status" => "Hadir", "perkembangan" => "Sangat Baik"],
+        ["nama" => "Citra Lestari", "jk" => "Perempuan", "alamat" => "Jl. Arifin Achmad", "status" => "Hadir", "perkembangan" => "Baik"],
+        ["nama" => "Dedi Kurniawan", "jk" => "Laki-laki", "alamat" => "Jl. Soekarno-Hatta", "status" => "Hadir", "perkembangan" => "Baik"],
+        ["nama" => "Eka Putri", "jk" => "Perempuan", "alamat" => "Jl. Sudirman", "status" => "Izin", "perkembangan" => "Cukup"],
+        ["nama" => "Fajar Ramadhan", "jk" => "Laki-laki", "alamat" => "Jl. Riau", "status" => "Hadir", "perkembangan" => "Baik"],
+        ["nama" => "Gita Gutawa", "jk" => "Perempuan", "alamat" => "Jl. Patimura", "status" => "Hadir", "perkembangan" => "Sangat Baik"],
+        ["nama" => "Hadi Wijaya", "jk" => "Laki-laki", "alamat" => "Jl. Paus", "status" => "Hadir", "perkembangan" => "Baik"],
+        ["nama" => "Indah Permata", "jk" => "Perempuan", "alamat" => "Jl. Tuanku Tambusai", "status" => "Hadir", "perkembangan" => "Sangat Baik"],
+        ["nama" => "Joko Susilo", "jk" => "Laki-laki", "alamat" => "Jl. Nangka", "status" => "Hadir", "perkembangan" => "Baik"],
+        ["nama" => "Kartika Sari", "jk" => "Perempuan", "alamat" => "Jl. Subrantas", "status" => "Hadir", "perkembangan" => "Baik"],
+        ["nama" => "Lestari", "jk" => "Perempuan", "alamat" => "Jl. Lily", "status" => "Izin", "perkembangan" => "Cukup"],
+        ["nama" => "Maya Anggraini", "jk" => "Perempuan", "alamat" => "Jl. Delima", "status" => "Hadir", "perkembangan" => "Baik"],
+        ["nama" => "Nanda Pratama", "jk" => "Laki-laki", "alamat" => "Jl. Cipta Karya", "status" => "Hadir", "perkembangan" => "Baik"],
+        ["nama" => "Putri Utami", "jk" => "Perempuan", "alamat" => "Jl. Kamboja", "status" => "Hadir", "perkembangan" => "Sangat Baik"],
+        ["nama" => "Qori Sandioriva", "jk" => "Perempuan", "alamat" => "Jl. Melati", "status" => "Hadir", "perkembangan" => "Baik"],
+        ["nama" => "Rian Mahendra", "jk" => "Laki-laki", "alamat" => "Jl. Mawar", "status" => "Hadir", "perkembangan" => "Baik"],
+        ["nama" => "Siti Nurhaliza", "jk" => "Perempuan", "alamat" => "Jl. Kenanga", "status" => "Sakit", "perkembangan" => "Cukup"],
+        ["nama" => "Tono Sudiono", "jk" => "Laki-laki", "alamat" => "Jl. Lobak", "status" => "Hadir", "perkembangan" => "Baik"],
+        ["nama" => "Utami Dewi", "jk" => "Perempuan", "alamat" => "Jl. Rajawali", "status" => "Hadir", "perkembangan" => "Sangat Baik"],
+        ["nama" => "Vira Amelia", "jk" => "Perempuan", "alamat" => "Jl. Garuda", "status" => "Hadir", "perkembangan" => "Baik"],
+        ["nama" => "Wahyu Hidayat", "jk" => "Laki-laki", "alamat" => "Jl. Durian", "status" => "Hadir", "perkembangan" => "Baik"],
+        ["nama" => "Xaverius", "jk" => "Laki-laki", "alamat" => "Jl. Mangga", "status" => "Hadir", "perkembangan" => "Baik"],
+        ["nama" => "Yanti Susanti", "jk" => "Perempuan", "alamat" => "Jl. Rambutan", "status" => "Hadir", "perkembangan" => "Sangat Baik"],
+        ["nama" => "Zainal Abidin", "jk" => "Laki-laki", "alamat" => "Jl. Jati", "status" => "Hadir", "perkembangan" => "Baik"],
+        ["nama" => "Ahmad Fauzi", "jk" => "Laki-laki", "alamat" => "Jl. Cendana", "status" => "Hadir", "perkembangan" => "Baik"],
+        ["nama" => "Bella Safitri", "jk" => "Perempuan", "alamat" => "Jl. Dahlia", "status" => "Hadir", "perkembangan" => "Sangat Baik"],
+        ["nama" => "Candra Kirana", "jk" => "Perempuan", "alamat" => "Jl. Anggrek", "status" => "Hadir", "perkembangan" => "Baik"],
+        ["nama" => "Dewi Lestari", "jk" => "Perempuan", "alamat" => "Jl. Srikandi", "status" => "Hadir", "perkembangan" => "Baik"],
+        ["nama" => "Eko Prasetyo", "jk" => "Laki-laki", "alamat" => "Jl. Bangka", "status" => "Hadir", "perkembangan" => "Baik"],
+        ["nama" => "Fitri Handayani", "jk" => "Perempuan", "alamat" => "Jl. Sumatera", "status" => "Hadir", "perkembangan" => "Sangat Baik"],
+        ["nama" => "Gilang Dirga", "jk" => "Laki-laki", "alamat" => "Jl. Kalimantan", "status" => "Hadir", "perkembangan" => "Baik"],
+        ["nama" => "Hesti Purwadinata", "jk" => "Perempuan", "alamat" => "Jl. Jawa", "status" => "Hadir", "perkembangan" => "Baik"],
+        ["nama" => "Irfan Hakim", "jk" => "Laki-laki", "alamat" => "Jl. Sulawesi", "status" => "Hadir", "perkembangan" => "Baik"]
     ];
 }
 
@@ -187,9 +187,10 @@ foreach ($daftar_siswa as $s) {
                 <th class="text-center py-3 px-3" style="width: 70px;">No</th>
                 <th class="text-center py-3">ID Siswa</th>
                 <th class="text-start py-3">Nama Siswa</th>
+                <th class="text-center py-3">Kelas</th> <!-- Kolom Relasi id_kelas -->
                 <th class="text-start py-3">Jenis Kelamin</th>
                 <th class="text-start py-3">Alamat</th>
-                <th class="text-center py-3">Status Kehadiran Hari Ini</th>
+                <th class="text-center py-3">Status Kehadiran</th>
               </tr>
             </thead>
             <tbody>
@@ -224,6 +225,7 @@ foreach ($daftar_siswa as $s) {
                 <td class="text-center px-3 fw-bold text-secondary"><?= $no_urut++; ?></td>
                 <td class="text-center"><span class="badge-id font-monospace"><?= $id_siswa; ?></span></td>
                 <td class="text-start fw-semibold text-dark"><?= $nama_siswa; ?></td>
+                <td class="text-center"><span class="badge bg-secondary bg-opacity-10 text-dark px-2 py-1"><?= $nama_kelas; ?></span></td>
                 <td class="text-start text-muted"><?= $jk; ?></td>
                 <td class="text-start text-muted"><?= $alamat; ?></td>
                 <td class="text-center py-3">
@@ -326,7 +328,7 @@ foreach ($daftar_siswa as $s) {
               <input type="text" class="form-control rounded-3 py-2" name="id_mahasiswa" placeholder="Contoh: S035" required>
             </div>
 
-            <div class="mb-3">
+            <div class="ns-3 mb-3">
               <label class="form-label fw-semibold text-secondary small">Nama Lengkap</label>
               <input type="text" class="form-control rounded-3 py-2" name="nama_lengkap" placeholder="Masukkan nama" required>
             </div>

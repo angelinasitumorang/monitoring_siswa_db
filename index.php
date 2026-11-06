@@ -28,7 +28,7 @@ $total_siswa = $data_siswa['total_siswa'] ?? 34; // Default 34 jika data kosong
 <body>
 
   <!-- PANGGIL NAVBAR TERPUSAT (Hanya 1 baris ini saja agar tidak dobel) -->
-  <?php include 'navbar.php'; ?>
+  <?php include 'data-sekolah/navbar.php'; ?>
 
   <!-- KONTEN UTAMA DASHBOARD -->
   <div class="container my-5">
